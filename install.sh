@@ -130,7 +130,7 @@ EOF
 CreateCert(){
     $systemPackage -y install socat
     curl https://get.acme.sh | sh
-    ~/.acme.sh/acme.sh  --register-account  -m test@$yourDomain --server zerossl
+    ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
     ~/.acme.sh/acme.sh  --issue  -d $yourDomain  --webroot /usr/share/nginx/html/
     if test -s /root/.acme.sh/$yourDomain/fullchain.cer; then
         EchoG "[5]申请证书成功."
